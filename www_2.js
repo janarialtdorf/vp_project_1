@@ -23,6 +23,7 @@ http.createServer(function(req, res){
 	if(currentUrl.pathname === "/"){
 		res.writeHead(200, {"Content-type": "text/html"});
 		res.write(pageHead);
+		res.write(pageBanner);
 	    res.write(pageBody);
 	    res.write("<p>Täna on " + dateET.weekDay() + ".</p>");
 	    res.write("<p>Kell on praegu " + dateET.fullTime() + ".</p>");
