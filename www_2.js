@@ -25,6 +25,8 @@ http.createServer(function(req, res){
 		res.write(pageHead);
 		res.write(pageBanner);
 	    res.write(pageBody);
+		res.write('<a href="/vanasonad/"><button>Vaata vanasõnu</button></a>');
+		res.write('<a href="/kodutoo"><button>Vaata kodus tehtud alalehte</button></a>');
 	    res.write("<p>Täna on " + dateET.weekDay() + ".</p>");
 	    res.write("<p>Kell on praegu " + dateET.fullTime() + ".</p>");
 	    res.write("<p>Tänane kuupäev on " + dateET.fullDate() + ".</p>");
@@ -73,7 +75,18 @@ http.createServer(function(req, res){
 			}
 		});
 	}
-    else {
+	
+	else if(currentUrl.pathname === "/kodutoo"){
+		res.writeHead(200, {"Content-type": "text/html"});
+		res.write(pageHead);
+		res.write(pageBanner);
+	    res.write(pageBody);
+		res.write("Kodus tehtud alaleht.");
+		res.write(pageFoot);
+	    return res.end();
+	}
+    
+	else {
 		res.end("Viga 404, ei leia sellist lehte.");
 	}	
 }).listen(5101);
